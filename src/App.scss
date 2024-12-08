@@ -29,8 +29,12 @@ body{
     }
 }
 .content__items{
-    justify-content: left;
-    gap: 10px;
+    justify-content: space-around;
+    .pizza-block{
+        // margin: 0;
+        margin-right: 0;
+    }
+    // gap: 10px;
     @media (max-width: 1495px) {
         justify-content: space-between;
         gap: 100px;
