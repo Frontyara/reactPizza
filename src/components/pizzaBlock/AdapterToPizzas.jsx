@@ -6,7 +6,7 @@ import Sort from "../sort/Sort";
 import PizzaBlock from "../pizzaBlock/index";
 import Skeleton from "../pizzaBlock/skeleton";
 // import { context } from '../../App'
-
+//124timerStrattimerEndSuccess
 function AdapterToPizzas() {
   let [isLoading, setIsLoading] = React.useState(true);
   let [items, setItems] = React.useState([]);
