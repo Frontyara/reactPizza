@@ -7,19 +7,14 @@ import PizzaBlock from "../pizzaBlock/index";
 import Skeleton from "../pizzaBlock/skeleton";
 // import { context } from '../../App'
 //124timerStrattimerEndSuccess
+import { context } from "../../App";
+
 function AdapterToPizzas() {
-  let [isLoading, setIsLoading] = React.useState(true);
-  let [items, setItems] = React.useState([]);
-  let pizzas;
-  React.useEffect(() => {
-    pizzas = fetch("https://6755b80511ce847c992af30a.mockapi.io/pizzas")
-      .then((res) => res.json())
-      .then((json) => {
-        setItems((items = json));
-        setIsLoading(!isLoading);
-      });
-      window.scrollTo(0,0)
-  }, []);
+  let contextForPizzasBlock = React.useContext({...context})
+  let isLoading = contextForPizzasBlock[0]
+  let items = contextForPizzasBlock[1]
+  let pizzas = contextForPizzasBlock[2]
+  window.scrollTo(0,0)
   return (
     <div className="adapterWrapper">
       <div className="content">

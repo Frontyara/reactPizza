@@ -3,8 +3,12 @@ import Logo from '../../../../../react-dev/text/src/assets/react.svg'
 import React from 'react'
 import Search from './assets/iconsSearch.svg'
 import Delete from './assets/iconClose.svg'
+import { context } from '../../App'
 
 function Header(){
+  let contextForHeader = React.useContext(context)
+  contextForHeader = contextForHeader.slice(4,6)
+  let [getSearch,setSearch] = contextForHeader
   let [inputValue,setInputValue] = React.useState('')
     return(
         <header className="header">
@@ -18,7 +22,10 @@ function Header(){
           </NavLink>
           <div className="inputBlock">
             <div className="search"><img src={Search} alt="" /></div>
-            <input type="seacrh" value={inputValue} placeholder='Моцаррелла' onChange={(event) => {setInputValue(event.target.value)}}/>
+            <input type="seacrh" value={inputValue} placeholder='Моцаррелла' onChange={(event) => {
+              setInputValue(event.target.value)
+              setSearch(event.target.value)
+              }}/>
             {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => setInputValue('')}/></div>}
           </div>
           <NavLink to={'/cart'} className="header__cart">

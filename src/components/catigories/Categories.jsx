@@ -1,6 +1,13 @@
 import React from "react"
 
+import { context } from "../../App"
+
 function Categories(){
+    let contextForCategories = React.useContext(context)
+    contextForCategories = contextForCategories[3]
+    let categoryApi = contextForCategories.category.getCategory
+    let setCategoryApi = contextForCategories.category.setCategory
+    
     let [selectCategory, setSelectCategory] = React.useState(0)
     function SelectCategory(index){
         setSelectCategory(
@@ -15,7 +22,10 @@ function Categories(){
                 {
                     categories.map((item,i) => {
                         return (
-                            <li key={i} onClick={() => SelectCategory(i)} className={(selectCategory == i) ? 'active' : ''}>{item}</li>
+                            <li key={i} onClick={() => {
+                                SelectCategory(i)
+                                setCategoryApi(`${i}`)
+                            }} className={(selectCategory == i) ? 'active' : ''}>{item}</li>
                         )
                     })
                 }
