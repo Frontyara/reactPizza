@@ -43,7 +43,7 @@ function Sort() {
                   key={i}
                   onClick={() => {
                     SortSelect(item)
-                    setSortApi(((item = 'цене') ? 'price&order=desc' : item = 'популярности' ? 'rating&order=desc' : ''))
+                    setSortApi()
                   }}
                   className={sortSelect == item ? "active" : ""}
                 >

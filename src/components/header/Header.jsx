@@ -7,8 +7,18 @@ import { context } from '../../App'
 
 function Header(){
   let contextForHeader = React.useContext(context)
+  let contextRandomTitle = React.useContext(context)
+  contextRandomTitle = contextRandomTitle[1]
   contextForHeader = contextForHeader.slice(4,6)
   let [getSearch,setSearch] = contextForHeader
+  let randomWord = []
+  randomWord[0] = setRandomWord()
+  randomWord[1] = setRandomWord()
+  function setRandomWord(){
+    let arr = ['четыре сезона','чизбургер-пицца','пепперони','маргарита']
+    let rand = 0 + Math.random() * (3);
+    return arr[Math.floor(rand)]
+  } 
   let [inputValue,setInputValue] = React.useState('')
     return(
         <header className="header">
@@ -22,7 +32,7 @@ function Header(){
           </NavLink>
           <div className="inputBlock">
             <div className="search"><img src={Search} alt="" /></div>
-            <input type="seacrh" value={inputValue} placeholder='Моцаррелла' onChange={(event) => {
+            <input type="seacrh" value={inputValue} placeholder={randomWord[Math.random().toFixed(0)]} onChange={(event) => {
               setInputValue(event.target.value)
               setSearch(event.target.value)
               }}/>

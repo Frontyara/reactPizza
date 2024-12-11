@@ -37,7 +37,7 @@ function App() {
     pizzas = fetch(
       `https://6755b80511ce847c992af30a.mockapi.io/pizzas?${
         categoryApi == 0 ? "" : `category=${categoryApi}`
-      }&search=${searchApi ? searchApi : ""}`
+      }&sortBy=${'asc'}&${searchApi ? `search=${searchApi}` : ""}`
     )
       .then((res) => res.json())
       .then((json) => {
@@ -46,7 +46,7 @@ function App() {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryApi, searchApi]);
+  }, [categoryApi, searchApi,sortApi]);
   return (
     <BrowserRouter>
       <context.Provider

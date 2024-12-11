@@ -1,17 +1,26 @@
 body{
+    background: linear-gradient(to right,  rgba(255,223,140,1) 20%,rgba(0, 217, 255, 0.953) 100%);
+    background-size: 300% 300%;
+    animation: backGradient 10s linear infinite;
+    @keyframes backGradient {
+        0% {
+            background-position: 0% ;
+        }
+        50% {
+            background-position: 50%;
+        }
+        100% {
+            background-position: 0%;
+        }
+    }
     user-select: none;
     &::-webkit-scrollbar{
-        width: 7px;
-    }
-    &::-webkit-scrollbar-thumb{
-        background-color: #00d9ff63;
-        border-radius: 5px 0px 0px 5px;
-    }
-    &::-webkit-scrollbar-track{
-        background-color: inherit;
+        width: 0;
     }
 }
 .wrapper{
+    position: relative;
+    z-index: 100;
     @media (max-width:495px) {
         width: 100vw;
     }
