@@ -179,6 +179,21 @@ body{
         margin-bottom: 30px;
     }
 }
+.sort__popup{
+    left: 20px;
+    transform-origin: top;
+    animation: openPopup 0.2s ease forwards;
+    @keyframes openPopup {
+        from{
+            // height: 0;
+            transform: scaleY(0);
+        }
+        to{
+            // height: auto;
+            transform: scaleY(1);
+        }
+    }
+}
 //         display: grid;
 //         grid-template: repeat(4,1fr)/repeat(4,1fr);
 //         grid-column-gap: 30px;

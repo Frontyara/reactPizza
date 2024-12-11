@@ -36,7 +36,7 @@ function Header(){
               setInputValue(event.target.value)
               setSearch(event.target.value)
               }}/>
-            {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => setInputValue('')}/></div>}
+            {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => setInputValue(inputValue = '')}/></div>}
           </div>
           <NavLink to={'/cart'} className="header__cart">
             <a href="/cart.html" className="button button--cart">

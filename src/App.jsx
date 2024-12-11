@@ -37,14 +37,14 @@ function App() {
     pizzas = fetch(
       `https://6755b80511ce847c992af30a.mockapi.io/pizzas?${
         categoryApi == 0 ? "" : `category=${categoryApi}`
-      }&sortBy=${'asc'}&${searchApi ? `search=${searchApi}` : ""}`
+      }&${searchApi != '' ? `search=${searchApi}` : ""}`
     )
       .then((res) => res.json())
       .then((json) => {
         setIsLoading(true);
         setItems((items = json));
         setIsLoading(false);
-      });
+      })
     window.scrollTo(0, 0);
   }, [categoryApi, searchApi,sortApi]);
   return (
