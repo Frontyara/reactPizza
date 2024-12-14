@@ -1,7 +1,9 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {configureStore} from '@reduxjs/toolkit'
 
-const store = createSlice({
-    reducer:{
-        
-    },
+import filterReducer from './slices/filterSlice'
+
+export const store = configureStore({
+    reducer: {
+        filterReducer,
+    }
 })
