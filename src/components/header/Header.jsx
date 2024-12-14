@@ -7,6 +7,13 @@ import { useDispatch } from 'react-redux'
 import { setSearchRedux } from '../../redux/slices/filterSlice'
 
 function Header(){
+  const inputRef = React.useRef()
+  function inputClear(){
+    setSearchFunc('')
+    setInputValue( inputValue = '')
+    inputRef.current.focus()
+  }
+
   const dispatch = useDispatch()
   function setSearchFunc(item){
     dispatch(setSearchRedux(item))
@@ -33,7 +40,9 @@ function Header(){
           </NavLink>
           <div className="inputBlock">
             <div className="search"><img src={Search} alt="" /></div>
-            <input type="seacrh" 
+            <input 
+            type="seacrh" 
+            ref={inputRef}
             value={inputValue} 
             placeholder={randomWord[Math.random().toFixed(0)]} 
             onChange={(event) => {
@@ -41,8 +50,7 @@ function Header(){
               setSearchFunc(event.target.value)
               }}/>
             {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => {
-              setSearchFunc('')
-              setInputValue( inputValue = '')
+              inputClear()
             }}/></div>}
           </div>
           <NavLink to={'/cart'} className="header__cart">
