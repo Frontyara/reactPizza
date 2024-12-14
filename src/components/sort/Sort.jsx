@@ -6,9 +6,9 @@ function Sort() {
   contextForSort = contextForSort[3]
   let sortApi = contextForSort.sort.getSort;
   let setSortApi = contextForSort.sort.setSort;
-  let selectText = ["популярности", "цене", "алфавиту"];
+  let selectText = ["популярности +",'популярности -', "цене +", "цене -", "алфавиту +", "алфавиту -"];
   let [sortPopup, setSortPopup] = React.useState(false);
-  let [sortSelect, setSortSelect] = React.useState("популярности");
+  let [sortSelect, setSortSelect] = React.useState("популярности +");
   function SortSelect(select) {
     setSortSelect((sortSelect = select));
     setSortPopup((sortPopup = false));
@@ -43,7 +43,7 @@ function Sort() {
                   key={i}
                   onClick={() => {
                     SortSelect(item)
-                    setSortApi()
+                    setSortApi(i)
                   }}
                   className={sortSelect == item ? "active" : ""}
                 >

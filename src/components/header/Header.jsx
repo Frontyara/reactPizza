@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
-import Logo from '../../../../../react-dev/text/src/assets/react.svg'
 import React from 'react'
+import Logo from '../../../reactLogo.svg'
 import Search from './assets/iconsSearch.svg'
 import Delete from './assets/iconClose.svg'
 import { context } from '../../App'
@@ -36,7 +36,10 @@ function Header(){
               setInputValue(event.target.value)
               setSearch(event.target.value)
               }}/>
-            {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => setInputValue(inputValue = '')}/></div>}
+            {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => {
+              setSearch(getSearch = '')
+              setInputValue( inputValue = '')
+            }}/></div>}
           </div>
           <NavLink to={'/cart'} className="header__cart">
             <a href="/cart.html" className="button button--cart">
