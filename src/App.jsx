@@ -5,6 +5,9 @@ import "./appFromOriginal.css";
 import "./App.scss";
 import "./_fonts.scss";
 
+import { useSelector } from "react-redux";
+
+
 import Header from "./components/header/Header";
 import Categories from "./components/catigories/Categories";
 import Sort from "./components/sort/Sort";
@@ -17,10 +20,11 @@ import EmptyPage from "./components/emptyPage";
 export const context = React.createContext();
 
 function App() {
+  const categoryId = useSelector((state) => state.filterReducer.category);
+
   const [isLoading, setIsLoading] = React.useState(true);
   let [items, setItems] = React.useState([]);
   let [sortApi, setSortApi] = React.useState("");
-  const [categoryApi, setCategoryApi] = React.useState("");
   const [searchApi, setSearchApi] = React.useState("");
   let pizzas;
   let categories = {
@@ -28,16 +32,13 @@ function App() {
       getSort: sortApi,
       setSort: setSortApi,
     },
-    category: {
-      getCategory: categoryApi,
-      setCategory: setCategoryApi,
-    },
   };
+  // ${categoryApi == 0 ? "" : `category=${categoryApi}`}
   React.useEffect(() => {
     pizzas = fetch(
       `https://6755b80511ce847c992af30a.mockapi.io/pizzas?${
-        categoryApi == 0 ? "" : `category=${categoryApi}`
-      }${ !!searchApi ? `&search=${searchApi}` : ""}${
+        categoryId == 0 ? '' : `category=${categoryId}`}${
+         !!searchApi ? `&search=${searchApi}` : ""}${
         sortApi == 0 ? '&sortBy=rating&order=asc' : 
         sortApi == 1 ? '&sortBy=rating&order=desc' : 
         sortApi == 2 ? '&sortBy=price&order=asc' :
@@ -52,8 +53,9 @@ function App() {
         setIsLoading(false);
       })
     window.scrollTo(0,0)
-  }, [categoryApi, searchApi,sortApi]);
-  return (
+  }, [searchApi,sortApi,categoryId]);
+  // categoryApi
+    return (
     <BrowserRouter>
       <context.Provider
         value={[isLoading, items, pizzas, categories, searchApi, setSearchApi]}

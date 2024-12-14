@@ -13,6 +13,7 @@ const filterSlice = createSlice({
         setCategory(state,action){
             state.category = action.payload
         }
+        // setSort(state,action)
     }
 })
 
