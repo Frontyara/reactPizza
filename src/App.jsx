@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import axios from "axios"
+
 import "./appFromOriginal.css";
 import "./App.scss";
 import "./_fonts.scss";
@@ -23,7 +25,7 @@ function App() {
   let [items, setItems] = React.useState([]);
   let pizzas;
   React.useEffect(() => {
-    pizzas = fetch(
+    pizzas = axios.get(
       `https://6755b80511ce847c992af30a.mockapi.io/pizzas?${
         categoryId == 0 ? "" : `category=${categoryId}`
       }${!!searchRedux ? `&search=${searchRedux}` : ""}${
@@ -40,10 +42,9 @@ function App() {
           : "&sortBy=name&order=desc"
       }`
     )
-      .then((res) => res.json())
       .then((json) => {
         setIsLoading(true);
-        setItems((items = json));
+        setItems((items = json.data));
         setIsLoading(false);
       });
     window.scrollTo(0, 0);

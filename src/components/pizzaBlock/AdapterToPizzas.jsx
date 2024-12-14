@@ -13,7 +13,6 @@ function AdapterToPizzas() {
   let contextForPizzasBlock = React.useContext({...context})
   let isLoading = contextForPizzasBlock[0]
   let items = contextForPizzasBlock[1]
-  let pizzas = contextForPizzasBlock[2]
   window.scrollTo(0,0)
   return (
     <div className="adapterWrapper">
