@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./appFromOriginal.css";
@@ -7,12 +7,7 @@ import "./_fonts.scss";
 
 import { useSelector } from "react-redux";
 
-
 import Header from "./components/header/Header";
-import Categories from "./components/catigories/Categories";
-import Sort from "./components/sort/Sort";
-import PizzaBlock from "./components/pizzaBlock/index";
-import Skeleton from "./components/pizzaBlock/skeleton";
 import AdapterToPizzas from "./components/pizzaBlock/AdapterToPizzas";
 import Cart from "./components/cart";
 import EmptyPage from "./components/emptyPage";
@@ -20,30 +15,29 @@ import EmptyPage from "./components/emptyPage";
 export const context = React.createContext();
 
 function App() {
+  const searchRedux = useSelector((state) => state.filterReducer.search);
   const categoryId = useSelector((state) => state.filterReducer.category);
+  const sortId = useSelector((state) => state.filterReducer.sort);
 
   const [isLoading, setIsLoading] = React.useState(true);
   let [items, setItems] = React.useState([]);
-  let [sortApi, setSortApi] = React.useState("");
-  const [searchApi, setSearchApi] = React.useState("");
   let pizzas;
-  let categories = {
-    sort: {
-      getSort: sortApi,
-      setSort: setSortApi,
-    },
-  };
-  // ${categoryApi == 0 ? "" : `category=${categoryApi}`}
   React.useEffect(() => {
     pizzas = fetch(
       `https://6755b80511ce847c992af30a.mockapi.io/pizzas?${
-        categoryId == 0 ? '' : `category=${categoryId}`}${
-         !!searchApi ? `&search=${searchApi}` : ""}${
-        sortApi == 0 ? '&sortBy=rating&order=asc' : 
-        sortApi == 1 ? '&sortBy=rating&order=desc' : 
-        sortApi == 2 ? '&sortBy=price&order=asc' :
-        sortApi == 3 ? '&sortBy=price&order=desc' :
-        sortApi == 4 ? '&sortBy=name&order=asc' : '&sortBy=name&order=desc'
+        categoryId == 0 ? "" : `category=${categoryId}`
+      }${!!searchRedux ? `&search=${searchRedux}` : ""}${
+        sortId == 0
+          ? "&sortBy=rating&order=asc"
+          : sortId == 1
+          ? "&sortBy=rating&order=desc"
+          : sortId == 2
+          ? "&sortBy=price&order=asc"
+          : sortId == 3
+          ? "&sortBy=price&order=desc"
+          : sortId == 4
+          ? "&sortBy=name&order=asc"
+          : "&sortBy=name&order=desc"
       }`
     )
       .then((res) => res.json())
@@ -51,15 +45,12 @@ function App() {
         setIsLoading(true);
         setItems((items = json));
         setIsLoading(false);
-      })
-    window.scrollTo(0,0)
-  }, [searchApi,sortApi,categoryId]);
-  // categoryApi
-    return (
+      });
+    window.scrollTo(0, 0);
+  }, [searchRedux, sortId, categoryId]);
+  return (
     <BrowserRouter>
-      <context.Provider
-        value={[isLoading, items, pizzas, categories, searchApi, setSearchApi]}
-      >
+      <context.Provider value={[isLoading, items]}>
         <div className="wrapper">
           <Header />
           <Routes>

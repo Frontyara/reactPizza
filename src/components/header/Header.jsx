@@ -3,14 +3,15 @@ import React from 'react'
 import Logo from '../../../reactLogo.svg'
 import Search from './assets/iconsSearch.svg'
 import Delete from './assets/iconClose.svg'
-import { context } from '../../App'
+import { useDispatch } from 'react-redux'
+import { setSearchRedux } from '../../redux/slices/filterSlice'
 
 function Header(){
-  let contextForHeader = React.useContext(context)
-  let contextRandomTitle = React.useContext(context)
-  contextRandomTitle = contextRandomTitle[1]
-  contextForHeader = contextForHeader.slice(4,6)
-  let [getSearch,setSearch] = contextForHeader
+  const dispatch = useDispatch()
+  function setSearchFunc(item){
+    dispatch(setSearchRedux(item))
+  }
+
   let randomWord = []
   randomWord[0] = setRandomWord()
   randomWord[1] = setRandomWord()
@@ -32,12 +33,15 @@ function Header(){
           </NavLink>
           <div className="inputBlock">
             <div className="search"><img src={Search} alt="" /></div>
-            <input type="seacrh" value={inputValue} placeholder={randomWord[Math.random().toFixed(0)]} onChange={(event) => {
+            <input type="seacrh" 
+            value={inputValue} 
+            placeholder={randomWord[Math.random().toFixed(0)]} 
+            onChange={(event) => {
               setInputValue(event.target.value)
-              setSearch(event.target.value)
+              setSearchFunc(event.target.value)
               }}/>
             {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => {
-              setSearch(getSearch = '')
+              setSearchFunc('')
               setInputValue( inputValue = '')
             }}/></div>}
           </div>

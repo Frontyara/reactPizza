@@ -1,11 +1,15 @@
 import React from "react";
-import { context } from "../../App";
+
+import { useDispatch } from "react-redux";
+import { setSort } from "../../redux/slices/filterSlice";
 
 function Sort() {
-  let contextForSort = React.useContext(context);
-  contextForSort = contextForSort[3]
-  let sortApi = contextForSort.sort.getSort;
-  let setSortApi = contextForSort.sort.setSort;
+  const dispatch = useDispatch()
+
+  function reverseSort(i){
+    dispatch(setSort(i))
+  }
+
   let selectText = ["популярности +",'популярности -', "цене +", "цене -", "алфавиту +", "алфавиту -"];
   let [sortPopup, setSortPopup] = React.useState(false);
   let [sortSelect, setSortSelect] = React.useState("популярности +");
@@ -43,7 +47,7 @@ function Sort() {
                   key={i}
                   onClick={() => {
                     SortSelect(item)
-                    setSortApi(i)
+                    reverseSort(i)
                   }}
                   className={sortSelect == item ? "active" : ""}
                 >

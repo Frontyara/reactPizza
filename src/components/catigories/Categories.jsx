@@ -1,13 +1,12 @@
 import React from "react";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCategory } from "../../redux/slices/filterSlice";
 
 import { context } from "../../App";
 
 function Categories() {
   const dispatch = useDispatch();
-  const categoryId = useSelector((state) => state.filterReducer.category);
   function onChangeCategory(i){
     dispatch(setCategory(i))
   };
