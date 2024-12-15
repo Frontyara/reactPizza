@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom'
 import React from 'react'
+
 import Logo from '../../../reactLogo.svg'
 import Search from './assets/iconsSearch.svg'
 import Delete from './assets/iconClose.svg'
+
 import { useDispatch } from 'react-redux'
 import { setSearchRedux } from '../../redux/slices/filterSlice'
+
+import debounce from 'lodash.debounce'
 
 function Header(){
   const inputRef = React.useRef()
