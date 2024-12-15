@@ -45,6 +45,7 @@ function Header(){
           <div className="inputBlock">
             <div className="search"><img src={Search} alt="" /></div>
             <input 
+            spellCheck="false"
             type="seacrh" 
             ref={inputRef}
             value={inputValue} 

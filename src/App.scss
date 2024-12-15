@@ -198,52 +198,54 @@ body {
     margin-bottom: 30px;
   }
 }
-.sort__popup {
-  left: 20px;
-  transform-origin: top;
-  animation: openPopup 0.4s ease forwards;
-  @keyframes openPopup {
-    from {
-      // height: 0;
-      transform: scaleY(0);
-    }
-    to {
-      // height: auto;
-      transform: scaleY(1);
-    }
-  }
-}
-.sort__label {
-  width: 300px;
-}
-.arrowFalse, .arrowTrue{
-    width: 10px;
-    height: 6px;
-    background-color: #3e403f;
-}
-.arrowTrue{
-    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-    animation: arrowAnimation 0.2s 0.1s linear forwards;
-    rotate: 180deg;
-    @keyframes arrowAnimation {
-        from{
-            rotate: 180deg;
+.sort{
+    .sort__popup {
+        left: 20px;
+        transform-origin: top;
+        animation: openPopup 0.4s ease forwards;
+        @keyframes openPopup {
+          from {
+            // height: 0;
+            transform: scaleY(0);
+          }
+          to {
+            // height: auto;
+            transform: scaleY(1);
+          }
         }
-        to{
-            rotate: 0deg;
-        }
-    }
-}
-.arrowFalse{
-    clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
-    animation: arrowAnimationFalse 0.2s 0.1s linear forwards;
-    rotate: 180deg;
-    @keyframes arrowAnimationFalse {
-        from{
-            rotate: 180deg;
-        }
-        to{
-            rotate: 0deg;
-        }
-    }
+      }
+      .sort__label {
+        width: 300px;
+        .arrowFalse, .arrowTrue{
+          width: 10px;
+          height: 6px;
+          background-color: #3e403f;
+      }
+      .arrowTrue{
+          clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+          animation: arrowAnimation 0.2s 0.1s linear forwards;
+          rotate: 180deg;
+          @keyframes arrowAnimation {
+              from{
+                  rotate: 180deg;
+              }
+              to{
+                  rotate: 0deg;
+              }
+          }
+      }
+      .arrowFalse{
+          clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
+          animation: arrowAnimationFalse 0.2s 0.1s linear forwards;
+          rotate: 180deg;
+          @keyframes arrowAnimationFalse {
+              from{
+                  rotate: 180deg;
+              }
+              to{
+                  rotate: 0deg;
+              }
+          }
+      }
+      }
 }
