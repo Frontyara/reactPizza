@@ -6,10 +6,6 @@ import { setSort } from "../../redux/slices/filterSlice";
 function Sort() {
   const dispatch = useDispatch();
 
-  function reverseSort(i) {
-    dispatch(setSort(i));
-  }
-
   let selectText = [
     "популярности +",
     "популярности -",
@@ -72,7 +68,7 @@ function Sort() {
                   key={i}
                   onClick={() => {
                     SortSelect(item);
-                    reverseSort(i);
+                    dispatch(setSort(i));
                   }}
                   className={sortSelect == item ? "active" : ""}
                 >
