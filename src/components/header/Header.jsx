@@ -11,6 +11,12 @@ import { setSearchRedux } from '../../redux/slices/filterSlice'
 import debounce from 'lodash.debounce'
 
 function Header(){
+  const setSearchValue = React.useCallback(
+    debounce((str) => {
+      dispatch(setSearchRedux(str))
+    },500)
+    ,[])
+
   const inputRef = React.useRef()
   function inputClear(){
     setSearchFunc('')
@@ -52,7 +58,7 @@ function Header(){
             placeholder={randomWord[Math.random().toFixed(0)]} 
             onChange={(event) => {
               setInputValue(event.target.value)
-              setSearchFunc(event.target.value)
+              setSearchValue(event.target.value)
               }}/>
             {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => {
               inputClear()
