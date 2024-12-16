@@ -19,15 +19,12 @@ function Header(){
 
   const inputRef = React.useRef()
   function inputClear(){
-    setSearchFunc('')
+    dispatch(setSearchRedux(''))
     setInputValue( inputValue = '')
     inputRef.current.focus()
   }
 
   const dispatch = useDispatch()
-  function setSearchFunc(item){
-    dispatch(setSearchRedux(item))
-  }
 
   let randomWord = []
   randomWord[0] = setRandomWord()

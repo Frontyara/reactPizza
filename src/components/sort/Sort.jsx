@@ -7,15 +7,15 @@ function Sort() {
   const dispatch = useDispatch();
 
   let selectText = [
-    "популярности +",
-    "популярности -",
-    "цене +",
-    "цене -",
-    "алфавиту +",
-    "алфавиту -",
+    "популярности 👆",
+    "популярности 👇",
+    "цене 👆",
+    "цене 👇",
+    "алфавиту 👆",
+    "алфавиту 👇",
   ];
   let [sortPopup, setSortPopup] = React.useState(false);
-  let [sortSelect, setSortSelect] = React.useState("популярности +");
+  let [sortSelect, setSortSelect] = React.useState("популярности 👆");
   function SortSelect(select) {
     setSortSelect((sortSelect = select));
     setSortPopup((sortPopup = false));
