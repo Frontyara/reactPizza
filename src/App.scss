@@ -203,13 +203,12 @@ body {
         left: 20px;
         transform-origin: top;
         animation: openPopup 0.4s ease forwards;
+        width: 170px;
         @keyframes openPopup {
           from {
-            // height: 0;
             transform: scaleY(0);
           }
           to {
-            // height: auto;
             transform: scaleY(1);
           }
         }
@@ -237,10 +236,10 @@ body {
       .arrowFalse{
           clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
           animation: arrowAnimationFalse 0.2s 0.1s linear forwards;
-          rotate: 180deg;
+          rotate: -180deg;
           @keyframes arrowAnimationFalse {
               from{
-                  rotate: 180deg;
+                  rotate: -180deg;
               }
               to{
                   rotate: 0deg;
@@ -249,8 +248,19 @@ body {
       }
       }
 }
-.pizza-block__image{
-    transition: scale 0.2s linear;
-&:hover{
-    scale: 1.04;
-}}
+.sort__popup_false{
+  left: 20px;
+  width: 170px;
+  .sort__label {
+    width: 300px;}
+  transform-origin: top;
+  animation: popupFalse 0.4s ease forwards;
+  @keyframes popupFalse {
+    from{
+transform: scaleY(1);
+    }
+    to{
+      transform: scaleY(0);
+    }
+  }
+}

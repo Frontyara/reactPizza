@@ -79,6 +79,26 @@ function Sort() {
           </ul>
         </div>
       )}
+      {sortPopup || (
+        <div className="sort__popup_false">
+          <ul>
+            {selectText.map((item, i) => {
+              return (
+                <li
+                  key={i}
+                  onClick={() => {
+                    SortSelect(item);
+                    dispatch(setSort(i));
+                  }}
+                  className={sortSelect == item ? "active" : ""}
+                >
+                  {item}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
