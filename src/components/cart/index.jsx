@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
 import CartSelectedItem from "./components/main/selectedItems";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { clearItems } from "../../redux/slices/cartSlice";
 
 export default function Cart() {
+  const dispatch = useDispatch()
   const items = useSelector((state) => state.cartReducer.items)
   const totalPrice = useSelector((state) => state.cartReducer.totalPrice)
   return (
@@ -43,7 +45,9 @@ export default function Cart() {
                 </svg>
                 Корзина
               </h2>
-              <div className="cart__clear">
+              <div className="cart__clear" onClick={() => {
+                dispatch(clearItems())
+              }}>
                 <svg
                   width="20"
                   height="20"
