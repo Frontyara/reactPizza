@@ -5,12 +5,14 @@ import Logo from '../../../reactLogo.svg'
 import Search from './assets/iconsSearch.svg'
 import Delete from './assets/iconClose.svg'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setSearchRedux } from '../../redux/slices/filterSlice'
 
 import debounce from 'lodash.debounce'
 
 function Header(){
+  const dispatch = useDispatch()
+  const {totalCount,totalPrice} = useSelector((state) => state.cartReducer)
   const setSearchValue = React.useCallback(
     debounce((str) => {
       dispatch(setSearchRedux(str))
@@ -24,7 +26,6 @@ function Header(){
     inputRef.current.focus()
   }
 
-  const dispatch = useDispatch()
 
   let randomWord = []
   randomWord[0] = setRandomWord()
