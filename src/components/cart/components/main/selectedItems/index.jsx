@@ -1,17 +1,17 @@
-export default function CartSelectedItem() {
+export default function CartSelectedItem(props) {
   return (
     <div className="content__items">
-      {/* <div className="cart__item">
+      <div className="cart__item">
                 <div className="cart__item-img">
                   <img
                     className="pizza-block__image"
-                    src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+                    src={props.img}
                     alt="Pizza"
                   />
                 </div>
                 <div className="cart__item-info">
-                  <h3>Сырный цыпленок</h3>
-                  <p>тонкое тесто, 26 см.</p>
+                  <h3>{props.title}</h3>
+                  <p>{props.type}, {props.size} см.</p>
                 </div>
                 <div className="cart__item-count">
                   <div className="button button--outline button--circle cart__item-count-minus">
@@ -75,7 +75,7 @@ export default function CartSelectedItem() {
                     </svg>
                   </div>
                 </div>
-              </div> */}
+              </div>
     </div>
   );
 }

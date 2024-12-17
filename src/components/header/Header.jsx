@@ -12,7 +12,8 @@ import debounce from 'lodash.debounce'
 
 function Header(){
   const dispatch = useDispatch()
-  const {totalCount,totalPrice} = useSelector((state) => state.cartReducer)
+  const items = useSelector((state) => state.cartReducer.items)
+  const totalPrice = useSelector((state) => state.cartReducer.totalPrice)
   const setSearchValue = React.useCallback(
     debounce((str) => {
       dispatch(setSearchRedux(str))
@@ -64,7 +65,7 @@ function Header(){
           </div>
           <NavLink to={'/cart'} className="header__cart">
             <a href="/cart.html" className="button button--cart">
-              <span>520 ₽</span>
+              <span>{totalPrice} ₽</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
@@ -95,7 +96,7 @@ function Header(){
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>3</span>
+              <span>{items.length}</span>
             </a>
           </NavLink>
         </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../redux/slices/cartSlice";
 
 function PizzaBlock({
   id,
@@ -10,7 +12,21 @@ function PizzaBlock({
   category,
   rating,
 }) {
-  let wordTypes = ["тонкое", "традиционная"];
+  const dispatch = useDispatch()
+  const wordTypes = ["тонкое", "традиционная"];
+  let [typeItem, setTypeItem] = React.useState(wordTypes[0])
+  let [sizeItem, setSizeItem] = React.useState(sizes[0])
+  const itemForRedux = {
+    id,
+    imageUrl,
+    name,
+    price,
+    typeItem,
+    sizeItem,
+  }
+  const onClickCart = () => {
+    dispatch(addItem(itemForRedux))
+  }
   let [indexType, setIndexType] = React.useState(0);
   let [indexSize, setIndexSize] = React.useState(0);
   function reverseIndexTypes(ind) {
@@ -31,10 +47,14 @@ function PizzaBlock({
         <div className="pizza-block__selector">
           <ul>
             {types.map((item, i) => {
+              // typeItem.current = wordTypes[item]
               return (
                 <li
                   key={i}
-                  onClick={() => reverseIndexTypes(i)}
+                  onClick={() => {
+                    reverseIndexTypes(i)
+                    setTypeItem(wordTypes[item])
+                  }}
                   className={indexType == i ? "active" : ""}
                 >
                   {wordTypes[item]}
@@ -47,23 +67,26 @@ function PizzaBlock({
               return (
                 <li
                   key={i}
-                  onClick={() => reverseIndexSizes(i)}
+                  onClick={() => {
+                    reverseIndexSizes(i)
+                    setSizeItem(item)
+                  }}
                   className={indexSize == i ? "active" : ""}
                 >
                   {item}см
                 </li>
               );
             })}
-            {/* <li className="active">26 см.</li>
-      <li>30 см.</li>
-      <li>40 см.</li> */}
           </ul>
         </div>
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">{price}₽</div>
           <button
             className="button button--outline button--add"
-            onClick={TakePizzaButton}
+            onClick={() => {
+              TakePizzaButton()
+              onClickCart()
+            }}
           >
             <svg
               width="12"
