@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 import axios from "axios"
 
@@ -20,8 +20,8 @@ function App() {
   const searchRedux = useSelector((state) => state.filterReducer.search);
   const categoryId = useSelector((state) => state.filterReducer.category);
   const sortId = useSelector((state) => state.filterReducer.sort);
-
   const [isLoading, setIsLoading] = React.useState(true);
+  
   let [items, setItems] = React.useState([]);
   let pizzas;
   React.useEffect(() => {
@@ -50,7 +50,6 @@ function App() {
     window.scrollTo(0, 0);
   }, [searchRedux, sortId, categoryId]);
   return (
-    <BrowserRouter>
       <context.Provider value={[isLoading, items]}>
         <div className="wrapper">
           <Header />
@@ -61,7 +60,6 @@ function App() {
           </Routes>
         </div>
       </context.Provider>
-    </BrowserRouter>
   );
 }
 

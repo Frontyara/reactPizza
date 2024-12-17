@@ -203,7 +203,7 @@ body {
         left: 20px;
         transform-origin: top;
         animation: openPopup 0.4s ease forwards;
-        width: 170px;
+        width: 180px;
         @keyframes openPopup {
           from {
             transform: scaleY(0);
@@ -250,7 +250,7 @@ body {
 }
 .sort__popup_false{
   left: 20px;
-  width: 170px;
+  width: 180px;
   .sort__label {
     width: 300px;}
   transform-origin: top;
