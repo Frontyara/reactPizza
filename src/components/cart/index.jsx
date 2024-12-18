@@ -6,6 +6,7 @@ import { clearItems } from "../../redux/slices/cartSlice";
 export default function Cart() {
   const dispatch = useDispatch()
   const items = useSelector((state) => state.cartReducer.items)
+  const totalPizzas = useSelector((state) => state.cartReducer.totalPizzas)
   const totalPrice = useSelector((state) => state.cartReducer.totalPrice)
   return (
     <main className="wrapper">
@@ -91,11 +92,14 @@ export default function Cart() {
             {items.map(item => {
               return(
                 <CartSelectedItem 
+                key={item.id+100}
+                id={item.id}
                 img={item.imageUrl} 
                 title={item.name} 
                 type={item.typeItem} 
                 size={item.sizeItem} 
                 count={item.count} 
+                clear={item.clear}
                 price={item.price}/>
               )
             })}
@@ -103,7 +107,7 @@ export default function Cart() {
               <div className="cart__bottom-details">
                 <span>
                   {" "}
-                  Всего пицц: <b>{items.length} шт.</b>{" "}
+                  Всего пицц: <b>{totalPizzas} шт.</b>{" "}
                 </span>
                 <span>
                   {" "}

@@ -17,14 +17,14 @@ function PizzaBlock({
   const wordTypes = ["тонкое", "традиционная"];
   let [typeItem, setTypeItem] = React.useState(wordTypes[0])
   let [sizeItem, setSizeItem] = React.useState(sizes[0])
-  const itemForRedux = {
+  let itemForRedux = {
     id,
     imageUrl,
     name,
     price,
     typeItem,
     sizeItem,
-    count: 0
+    count: 0,
   }
   const count = useSelector(state => state.cartReducer.items.find(obj => obj.id == id && obj.typeItem == typeItem && obj.sizeItem == sizeItem))
   const selectCount = count ? count.count : 0

@@ -1,7 +1,9 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addCount, removeCount, removeItem } from "../../../../../redux/slices/cartSlice";
 
 export default function CartSelectedItem(props) {
   // const count = useSelector(state => state.cartReducer.items)
+  const dispatch = useDispatch()
   return (
     <div className="content__items">
       <div className="cart__item">
@@ -17,7 +19,10 @@ export default function CartSelectedItem(props) {
                   <p>{props.type}, {props.size} см.</p>
                 </div>
                 <div className="cart__item-count">
-                  <div className="button button--outline button--circle cart__item-count-minus">
+                  <div className="button button--outline button--circle cart__item-count-minus"
+                  onClick={() => {
+                    dispatch(removeCount(props))
+                  }}>
                     <svg
                       width="10"
                       height="10"
@@ -36,7 +41,10 @@ export default function CartSelectedItem(props) {
                     </svg>
                   </div>
                   <b>{props.count}</b>
-                  <div className="button button--outline button--circle cart__item-count-plus">
+                  <div className="button button--outline button--circle cart__item-count-plus"
+                  onClick={() => {
+                    dispatch(addCount(props))
+                  }}>
                     <svg
                       width="10"
                       height="10"
@@ -58,7 +66,11 @@ export default function CartSelectedItem(props) {
                 <div className="cart__item-price">
                   <b>{props.price * props.count} ₽</b>
                 </div>
-                <div className="cart__item-remove">
+                <div className="cart__item-remove"
+                onClick={() => {
+                  dispatch(removeItem(props))
+                }}
+                >
                   <div className="button button--outline button--circle">
                     <svg
                       width="10"
