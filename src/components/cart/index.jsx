@@ -90,7 +90,13 @@ export default function Cart() {
             </div>
             {items.map(item => {
               return(
-                <CartSelectedItem img={item.imageUrl} title={item.name} type={item.typeItem} size={item.sizeItem}/>
+                <CartSelectedItem 
+                img={item.imageUrl} 
+                title={item.name} 
+                type={item.typeItem} 
+                size={item.sizeItem} 
+                count={item.count} 
+                price={item.price}/>
               )
             })}
             <div className="cart__bottom">

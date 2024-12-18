@@ -12,7 +12,7 @@ import debounce from 'lodash.debounce'
 
 function Header(){
   const dispatch = useDispatch()
-  const items = useSelector((state) => state.cartReducer.items)
+  const count = useSelector((state) => state.cartReducer.totalPizzas)
   const totalPrice = useSelector((state) => state.cartReducer.totalPrice)
   const setSearchValue = React.useCallback(
     debounce((str) => {
@@ -96,7 +96,7 @@ function Header(){
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>{items.length}</span>
+              <span>{count}</span>
             </a>
           </NavLink>
         </div>

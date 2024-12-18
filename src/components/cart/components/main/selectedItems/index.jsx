@@ -1,4 +1,7 @@
+import { useSelector } from "react-redux";
+
 export default function CartSelectedItem(props) {
+  // const count = useSelector(state => state.cartReducer.items)
   return (
     <div className="content__items">
       <div className="cart__item">
@@ -32,7 +35,7 @@ export default function CartSelectedItem(props) {
                       />
                     </svg>
                   </div>
-                  <b>2</b>
+                  <b>{props.count}</b>
                   <div className="button button--outline button--circle cart__item-count-plus">
                     <svg
                       width="10"
@@ -53,7 +56,7 @@ export default function CartSelectedItem(props) {
                   </div>
                 </div>
                 <div className="cart__item-price">
-                  <b>770 ₽</b>
+                  <b>{props.price * props.count} ₽</b>
                 </div>
                 <div className="cart__item-remove">
                   <div className="button button--outline button--circle">
