@@ -3,11 +3,51 @@ import CartSelectedItem from "./components/main/selectedItems";
 import { useSelector,useDispatch } from "react-redux";
 import { clearItems } from "../../redux/slices/cartSlice";
 
+import EmptyCartIcon from '../../../../react-pizza-html/public/img/empty-cart.png'
+
 export default function Cart() {
   const dispatch = useDispatch()
   const items = useSelector((state) => state.cartReducer.items)
   const totalPizzas = useSelector((state) => state.cartReducer.totalPizzas)
   const totalPrice = useSelector((state) => state.cartReducer.totalPrice)
+  if(totalPrice == 0){
+    return(
+      <div className="content">
+        <div className="container container--cart">
+          <div className="cart cart--empty">
+            <h2>Корзина пустая 😕</h2>
+            <p>
+              Вероятней всего, вы не заказывали ещё пиццу.<br />
+              Для того, чтобы заказать пиццу, перейди на главную страницу.
+            </p>
+            <img src={EmptyCartIcon} alt="Empty cart" />
+            <NavLink
+                  to="/"
+                  className="button button--black go-back-btn"
+                >
+                  <svg
+                    width="8"
+                    height="14"
+                    viewBox="0 0 8 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7 13L1 6.93015L6.86175 1"
+                      stroke="#D3D3D3"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  
+                  <span> Вернуться назад</span>
+                </NavLink>
+          </div>
+        </div>
+      </div>
+    )
+  }
   return (
     <main className="wrapper">
       <div className="content">
@@ -92,7 +132,7 @@ export default function Cart() {
             {items.map(item => {
               return(
                 <CartSelectedItem 
-                key={item.id+100}
+                key={item.id+item.typeItem+item.sizeItem}
                 id={item.id}
                 img={item.imageUrl} 
                 title={item.name} 
