@@ -7,22 +7,24 @@ import "./appFromOriginal.css";
 import "./App.scss";
 import "./_fonts.scss";
 
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 import Header from "./components/header/Header";
 import AdapterToPizzas from "./components/pizzaBlock/AdapterToPizzas";
 import Cart from "./components/cart";
 import EmptyPage from "./components/emptyPage";
+import { getPizzas } from "./redux/slices/pizzasItemsFrom Back";
 
 export const context = React.createContext();
 
 function App() {
-  const searchRedux = useSelector((state) => state.filterReducer.search);
+  const dispatch = useDispatch()
   const categoryId = useSelector((state) => state.filterReducer.category);
+  const searchRedux = useSelector((state) => state.filterReducer.search);
   const sortId = useSelector((state) => state.filterReducer.sort);
+  const items = useSelector(state => state.pizzasReducer.pizzasItems)
   const [isLoading, setIsLoading] = React.useState(true);
-  
-  let [items, setItems] = React.useState([]);
+
   let pizzas;
   React.useEffect(() => {
     pizzas = axios.get(
@@ -43,10 +45,14 @@ function App() {
       }`
     )
       .then((json) => {
+        dispatch(getPizzas(json.data))
         setIsLoading(true);
-        setItems((items = json.data));
         setIsLoading(false);
-      });
+      }).catch((error) => {
+        alert("Ошибка на стороне сервера")
+        setIsLoading(false)
+        console.log(error)
+      })
     window.scrollTo(0, 0);
   }, [searchRedux, sortId, categoryId]);
   return (

@@ -172,6 +172,12 @@ body {
   .pizza-block__wrapper {
     display: flex;
     justify-content: center;
+
+    &:hover{
+      .pizza-block__image{
+        transition: transform 0.2s 0.1s linear;
+        transform: translateY(5px);
+    }}
     .pizza-block {
       display: flex;
       flex-direction: column;
@@ -180,6 +186,8 @@ body {
       margin-right: 0;
       margin-bottom: 0;
       margin-left: 0;
+      .pizza-block__image{
+        transition: transform 0.2s 0.1s linear;}
       .pizza-block__selector {
         align-self: normal;
       }
