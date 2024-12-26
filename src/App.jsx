@@ -48,11 +48,12 @@ function App() {
         dispatch(getPizzas(json.data))
         setIsLoading(true);
         setIsLoading(false);
-      }).catch((error) => {
-        alert("Ошибка на стороне сервера")
-        setIsLoading(false)
-        console.log(error)
       })
+      // .catch((error) => {
+        // alert("Ошибка на стороне сервера")
+        // setIsLoading(false)
+        // console.log(error)
+      // })
     window.scrollTo(0, 0);
   }, [searchRedux, sortId, categoryId]);
   return (

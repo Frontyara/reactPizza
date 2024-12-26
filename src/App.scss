@@ -1,4 +1,5 @@
 body {
+  anchor-name: "body";
   background: linear-gradient(
     to right,
     rgba(255, 223, 140, 1) 20%,
@@ -277,3 +278,125 @@ transform: scaleY(1);
     display: flex;
   }
 }
+// .structureBlock{
+//   background-color: white;
+//   position: fixed;
+//   // width: 1000px;
+//   position-anchor: "body";
+//   top: 50%;
+//   left: 50%;
+//   z-index: 100;
+//   transform: translate(-50%,-50%);
+//   display: flex;
+//   flex-direction: row;
+//   padding: 40px;
+//   border-radius: 20px;
+//   box-shadow: 0px 0px 0px 100vw rgba($color: #000000, $alpha: 0.7);
+//   .structureBlock__structure{
+//     // width: 400px;
+//   }
+//   .structureBlock__info > *{
+//     margin: 7px;
+//   }
+//   img{
+//     width: 450px;
+//     height: 450px;
+//     margin: 60px;
+//   }
+//   .structureBlock__info{
+//     // width: 500px;
+//   }
+// }
+.cross{
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  padding: 20px;
+  position: absolute;
+  top: 5px;
+  right: -25px;
+  .line1,.line2{
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+  }
+  .line1{
+    position: absolute;
+    transform-origin: center;
+    transform: rotate(45deg);
+  }
+  .line2{
+    position: absolute;
+    transform-origin: center;
+    transform: rotate(-45deg);
+  }
+}
+.structureBlock{
+  animation: comeStructureBlock 0.2s linear forwards;
+  border-radius: 20px;
+  position: fixed;
+  position-anchor: 'body';
+  justify-self: center;
+  top: 50%;
+  transform: translateY(-50%);
+  // box-shadow: 0px 0px 0px 100vw rgba($color: #000000, $alpha: 0.7);
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  background-color: #ffffff;
+  padding: 30px;
+  z-index: 100;
+  transform-origin: center;
+  img{
+    width: 450px;
+    height: 450px;
+    margin: 40px;
+  }
+  .structureBlock__info > *{
+    &:not(:first-child){
+      margin-top: 5px;
+    }
+  }
+  @keyframes comeStructureBlock {
+    from{
+      opacity: 0.7;
+      scale: 0.95;
+    }
+    to{
+      opacity: 1;
+      scale:1;
+    }
+  }
+}
+.shadowBlock, .shadowBlock_false{
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+.shadowBlock{
+  animation: shadowCome 0.1s linear forwards;
+  @keyframes shadowCome {
+    from{
+      opacity: 0;
+    }
+    to{
+      opacity: 0.7;
+    }
+  }
+}
+// .shadowBlock_false{
+//   animation: shadowGone 0.1s ease forwards;
+//   @keyframes shadowGone {
+//     from{
+//       opacity: 0.7;
+//     }
+//     to{
+//       opacity: 0;
+//     }
+//   }
+// }
