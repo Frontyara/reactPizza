@@ -140,7 +140,7 @@ export default function Cart() {
                 size={item.sizeItem} 
                 count={item.count} 
                 clear={item.clear}
-                price={item.price}/>
+                price={item.actPrice}/>
               )
             })}
             <div className="cart__bottom">

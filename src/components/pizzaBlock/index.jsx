@@ -12,8 +12,12 @@ function PizzaBlock({
   category,
   rating,
   structure,
+  price30,
+  price35,
+  priceAct
 }) {
   const dispatch = useDispatch();
+  const [actPrice, setActPrice] = React.useState(price)
   // console.log(selectCount)
   const wordTypes = ["тонкое", "традиционная"];
   let [typeItem, setTypeItem] = React.useState(wordTypes[0]);
@@ -22,7 +26,7 @@ function PizzaBlock({
     id,
     imageUrl,
     name,
-    price,
+    actPrice,
     typeItem,
     sizeItem,
     count: 0,
@@ -78,7 +82,38 @@ function PizzaBlock({
               {sizeItem} см, {typeItem}
             </div>
             <div className="structureBlock__structure">{structure}</div>
-            
+            {/* <ul>
+              {types.map((item, i) => {
+                return (
+                  <li
+                    key={i}
+                    onClick={() => {
+                      reverseIndexTypes(i);
+                      setTypeItem(wordTypes[item]);
+                    }}
+                    className={indexType == i ? "active" : ""}
+                  >
+                    {wordTypes[item]}
+                  </li>
+                );
+              })}
+            </ul>
+            <ul>
+              {sizes.map((item, i) => {
+                return (
+                  <li
+                    key={i}
+                    onClick={() => {
+                      reverseIndexSizes(i);
+                      setSizeItem(item);
+                    }}
+                    className={indexSize == i ? "active" : ""}
+                  >
+                    {item}см
+                  </li>
+                );
+              })}
+            </ul> */}
           </div>
         </div>
         </>
@@ -122,6 +157,13 @@ function PizzaBlock({
                     onClick={() => {
                       reverseIndexSizes(i);
                       setSizeItem(item);
+                      if(item == 30){
+                        setActPrice(prev => prev = (price * 1.43).toFixed(0))
+                      } else if (item == 35){
+                        setActPrice(prev => prev = (price * 1.73).toFixed(0))
+                      } else{
+                        setActPrice(price)
+                      }
                     }}
                     className={indexSize == i ? "active" : ""}
                   >
@@ -132,7 +174,7 @@ function PizzaBlock({
             </ul>
           </div>
           <div className="pizza-block__bottom">
-            <div className="pizza-block__price">{price}₽</div>
+            <div className="pizza-block__price">{actPrice}₽</div>
             <button
               className="button button--outline button--add"
               onClick={() => {
