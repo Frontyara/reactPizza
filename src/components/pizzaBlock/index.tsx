@@ -9,10 +9,16 @@ function PizzaBlock({
   types,
   sizes,
   price,
+  category,
+  rating,
   structure,
+  price30,
+  price35,
+  priceAct
 }) {
   const dispatch = useDispatch();
   const [actPrice, setActPrice] = React.useState(price)
+  // console.log(selectCount)
   const wordTypes = ["тонкое", "традиционная"];
   let [typeItem, setTypeItem] = React.useState(wordTypes[0]);
   let [sizeItem, setSizeItem] = React.useState(sizes[0]);
@@ -25,7 +31,7 @@ function PizzaBlock({
     sizeItem,
     count: 0,
   };
-  const count = useSelector((state: any) =>
+  const count = useSelector((state) =>
     state.cartReducer.items.find(
       (obj) =>
         obj.id == id && obj.typeItem == typeItem && obj.sizeItem == sizeItem
@@ -51,7 +57,6 @@ function PizzaBlock({
   const shadowRef = React.useRef()
   const [shadowOpacity,setShadowOpacity] = React.useState(0)
   const [shadowBLockClass, setShadowBLockClass] = React.useState("shadowBlock")
-  if(!shadowRef)
   return (
     <>
       {structureBool && (

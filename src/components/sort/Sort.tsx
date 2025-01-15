@@ -4,9 +4,8 @@ import { useDispatch } from "react-redux";
 import { setSort } from "../../redux/slices/filterSlice";
 
 function Sort() {
-
   const dispatch = useDispatch();
-  const sortRef = React.useRef();
+  const sortRef = React.useRef()
 
   let selectText = [
     "популярности 👆",
@@ -16,11 +15,11 @@ function Sort() {
     "алфавиту 👆",
     "алфавиту 👇",
   ];
-  const [sortPopup, setSortPopup] = React.useState(false);
-  const [sortSelect, setSortSelect] = React.useState("популярности 👆");
+  let [sortPopup, setSortPopup] = React.useState(false);
+  let [sortSelect, setSortSelect] = React.useState("популярности 👆");
   function SortSelect(select) {
-    setSortSelect(select);
-    setSortPopup(false);
+    setSortSelect((sortSelect = select));
+    setSortPopup((sortPopup = false));
   }
   function openSortPopup() {
     setSortPopup(!sortPopup);
@@ -30,16 +29,16 @@ function Sort() {
   //   }
   //   document.body.addEventListener('click', closePopupBody)
   // },[])
-  React.useEffect(() => {
+  React.useEffect(()=>{
     const closeBody = (event) => {
-      if (!event.composedPath().includes(sortRef.current)) {
-        setSortPopup(false);
-      }
-    };
-    document.body.addEventListener("click", closeBody);
-    return () => document.body.removeEventListener("click", closeBody);
-  }, []);
-  if(!sortRef)
+      if(!event.composedPath().includes(sortRef.current)){
+        setSortPopup(false)
+      } 
+    }
+    document.body.addEventListener('click', closeBody)
+    return (() => document.body.removeEventListener('click', closeBody))
+  },[])
+
   return (
     <div className="sort" ref={sortRef}>
       <div onClick={openSortPopup} className="sort__label">
