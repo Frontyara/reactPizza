@@ -1,8 +1,8 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCount, removeCount, removeItem } from "../../../../../redux/slices/cartSlice";
 
 export default function CartSelectedItem(props) {
-  // const count = useSelector(state => state.cartReducer.items)
   const dispatch = useDispatch()
   return (
     <div className="content__items">

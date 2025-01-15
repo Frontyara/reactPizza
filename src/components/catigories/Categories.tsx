@@ -3,8 +3,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../../redux/slices/filterSlice";
 
-import { context } from "../../App";
-
 function Categories() {
   const dispatch = useDispatch();
   function onChangeCategory(i){

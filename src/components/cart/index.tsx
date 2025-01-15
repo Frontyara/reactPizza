@@ -1,3 +1,4 @@
+import React from "react";
 import { NavLink } from "react-router-dom";
 import CartSelectedItem from "./components/main/selectedItems";
 import { useSelector,useDispatch } from "react-redux";
@@ -7,9 +8,9 @@ import EmptyCartIcon from '../../../../react-pizza-html/public/img/empty-cart.pn
 
 export default function Cart() {
   const dispatch = useDispatch()
-  const items = useSelector((state) => state.cartReducer.items)
-  const totalPizzas = useSelector((state) => state.cartReducer.totalPizzas)
-  const totalPrice = useSelector((state) => state.cartReducer.totalPrice)
+  const items = useSelector((state: any) => state.cartReducer.items)
+  const totalPizzas = useSelector((state: any) => state.cartReducer.totalPizzas)
+  const totalPrice = useSelector((state: any) => state.cartReducer.totalPrice)
   if(totalPrice == 0){
     return(
       <div className="content">

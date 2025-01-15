@@ -1,13 +1,9 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "../header/Header";
 import Categories from "../catigories/Categories";
 import Sort from "../sort/Sort";
-import PizzaBlock from "../pizzaBlock/index";
-import Skeleton from "../pizzaBlock/skeleton";
-// import { context } from '../../App'
-//124timerStrattimerEndSuccess
-import { context } from "../../App";
+import PizzaBlock from "./index";
+import Skeleton from "./skeleton";
+import { context } from "../../App0";
 
 function AdapterToPizzas() {
   let contextForPizzasBlock = React.useContext({...context})
