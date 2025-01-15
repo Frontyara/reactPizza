@@ -44,13 +44,13 @@ const cartSlice = createSlice({
                 state.items = state.items.filter(obj => obj.count != 0)
             }
             --state.totalPizzas
-            state.totalPrice -= findItem.actPrice
+            state.totalPrice -= +findItem.actPrice
         },
         addCount(state,action){
             const findItem = state.items.find(obj => obj.id == action.payload.id && obj.typeItem == action.payload.type && obj.sizeItem == action.payload.size)
             ++findItem.count
             ++state.totalPizzas
-            state.totalPrice += findItem.actPrice
+            state.totalPrice += +findItem.actPrice
         },
         clearItems(state){
             state.items = []

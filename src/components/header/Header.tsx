@@ -2,41 +2,17 @@ import { NavLink } from 'react-router-dom'
 import React from 'react'
 
 import Logo from '../../../reactLogo.svg'
-import Search from './assets/iconsSearch.svg'
-import Delete from './assets/iconClose.svg'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { setSearchRedux } from '../../redux/slices/filterSlice'
-
-import debounce from 'lodash.debounce'
+import { useSelector } from 'react-redux'
 
 function Header(){
-  const dispatch = useDispatch()
-  const count = useSelector((state) => state.cartReducer.totalPizzas)
-  const totalPrice = useSelector((state) => state.cartReducer.totalPrice)
-  const setSearchValue = React.useCallback(
-    debounce((str) => {
-      dispatch(setSearchRedux(str))
-    },500)
-    ,[])
+  const count = useSelector((state:{
+    cartReducer: any
+  }) => state.cartReducer.totalPizzas)
+  const totalPrice = useSelector((state: {
+    cartReducer: any
+  }) => state.cartReducer.totalPrice)
 
-  const inputRef = React.useRef()
-  function inputClear(){
-    dispatch(setSearchRedux(''))
-    setInputValue( inputValue = '')
-    inputRef.current.focus()
-  }
-
-
-  let randomWord = []
-  randomWord[0] = setRandomWord()
-  randomWord[1] = setRandomWord()
-  function setRandomWord(){
-    let arr = ['четыре сезона','чизбургер-пицца','пепперони','маргарита']
-    let rand = 0 + Math.random() * (3);
-    return arr[Math.floor(rand)]
-  } 
-  let [inputValue,setInputValue] = React.useState('')
     return(
         <header className="header">
         <div className="container">
@@ -47,22 +23,6 @@ function Header(){
               <p>самая вкусная пицца во вселенной</p>
             </div>
           </NavLink>
-          <div className="inputBlock">
-            <div className="search"><img src={Search} alt="" /></div>
-            <input 
-            spellCheck="false"
-            type="seacrh" 
-            ref={inputRef}
-            value={inputValue} 
-            placeholder={randomWord[Math.random().toFixed(0)]} 
-            onChange={(event) => {
-              setInputValue(event.target.value)
-              setSearchValue(event.target.value)
-              }}/>
-            {inputValue && <div className="delete"><img src={Delete} alt="" onClick={() => {
-              inputClear()
-            }}/></div>}
-          </div>
           <NavLink to={'/cart'} className="header__cart">
             <button className="button button--cart">
               <span>{totalPrice} ₽</span>
