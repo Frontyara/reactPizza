@@ -1,5 +1,7 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+
+import axios from "axios";
 
 import "./appFromOriginal.css";
 import "./App.scss";
@@ -11,11 +13,10 @@ import Header from "./components/header/Header";
 import AdapterToPizzas from "./components/pizzaBlock/AdapterToPizzas";
 import Cart from "./components/cart";
 import EmptyPage from "./components/emptyPage";
-// import { getPizzas } from "./redux/slices/pizzasItemsFrom Back";
-import { asyncGetPizzas } from "./redux/slices/pizzasItemsFrom Back";
+import { getPizzas } from "./redux/slices/pizzasItemsFromBack";
+import { getPizzasItems } from "./redux/slices/pizzasItemsFromBack";
 
-// eslint-disable-next-line react-refresh/only-export-components
-let anyElem: any = 0
+const anyElem: any = 0;
 export const context = React.createContext(anyElem);
 
 function App() {
@@ -26,14 +27,15 @@ function App() {
   const items = useSelector((state: any) => state.pizzasReducer.pizzasItems);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  async function getPizzas(){
-    await dispatch<any>(asyncGetPizzas({ categoryId, sortId }));
-    setIsLoading(false);
-    window.scrollTo(0, 0);
-  }
-  React.useEffect(() => {
-    getPizzas()
-  }, [searchRedux, sortId, categoryId ]);
+   React.useEffect(() => {
+    const query = async () => {
+      setIsLoading(true)
+      await dispatch<any>(getPizzasItems({categoryId, sortId}))
+      setIsLoading(false)
+      window.scrollTo(0,0)
+    }
+    query()
+  },[sortId, categoryId])
   return (
     <context.Provider value={[isLoading, items]}>
       <div className="wrapper">

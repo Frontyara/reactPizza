@@ -3,7 +3,7 @@ import Categories from "../catigories/Categories";
 import Sort from "../sort/Sort";
 import PizzaBlock from "./index";
 import Skeleton from "./skeleton";
-import { context } from "../../App0";
+import { context } from "../../App";
 
 function AdapterToPizzas() {
   let contextForPizzasBlock = React.useContext({...context})
