@@ -2,6 +2,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
 
+type PizzaBLockProps = {
+  id:number;
+  imageUrl:string;
+  name:string;
+  types:number[];
+  sizes:number[];
+  price:number;
+  strurcture:string;
+}
+
 function PizzaBlock({
   id,
   imageUrl,
@@ -9,12 +19,7 @@ function PizzaBlock({
   types,
   sizes,
   price,
-  category,
-  rating,
   structure,
-  price30,
-  price35,
-  priceAct
 }) {
   const dispatch = useDispatch();
   const [actPrice, setActPrice] = React.useState(price)
@@ -31,7 +36,7 @@ function PizzaBlock({
     sizeItem,
     count: 0,
   };
-  const count = useSelector((state) =>
+  const count = useSelector((state:{cartReducer:{items}}) =>
     state.cartReducer.items.find(
       (obj) =>
         obj.id == id && obj.typeItem == typeItem && obj.sizeItem == sizeItem
@@ -54,7 +59,7 @@ function PizzaBlock({
     setTakePizza(++takePizza);
   }
   const [structureBool, setStructureBool] = React.useState(false);
-  const shadowRef = React.useRef()
+  const shadowRef = React.useRef<HTMLDivElement>(null)
   const [shadowOpacity,setShadowOpacity] = React.useState(0)
   const [shadowBLockClass, setShadowBLockClass] = React.useState("shadowBlock")
   return (
@@ -82,38 +87,6 @@ function PizzaBlock({
               {sizeItem} см, {typeItem}
             </div>
             <div className="structureBlock__structure">{structure}</div>
-            {/* <ul>
-              {types.map((item, i) => {
-                return (
-                  <li
-                    key={i}
-                    onClick={() => {
-                      reverseIndexTypes(i);
-                      setTypeItem(wordTypes[item]);
-                    }}
-                    className={indexType == i ? "active" : ""}
-                  >
-                    {wordTypes[item]}
-                  </li>
-                );
-              })}
-            </ul>
-            <ul>
-              {sizes.map((item, i) => {
-                return (
-                  <li
-                    key={i}
-                    onClick={() => {
-                      reverseIndexSizes(i);
-                      setSizeItem(item);
-                    }}
-                    className={indexSize == i ? "active" : ""}
-                  >
-                    {item}см
-                  </li>
-                );
-              })}
-            </ul> */}
           </div>
         </div>
         </>

@@ -4,14 +4,14 @@ import CartSelectedItem from "./components/main/selectedItems";
 import { useSelector,useDispatch } from "react-redux";
 import { clearItems } from "../../redux/slices/cartSlice";
 
-import EmptyCartIcon from '../../../../react-pizza-html/public/img/empty-cart.png'
+import EmptyCartIcon from './empty-cart.png'
 
-export default function Cart() {
+const Cart: React.FC = () => {
   const dispatch = useDispatch()
   const items = useSelector((state: any) => state.cartReducer.items)
   const totalPizzas = useSelector((state: any) => state.cartReducer.totalPizzas)
   const totalPrice = useSelector((state: any) => state.cartReducer.totalPrice)
-  if(totalPrice == 0){
+  if(totalPrice === 0){
     return(
       <div className="content">
         <div className="container container--cart">
@@ -189,3 +189,5 @@ export default function Cart() {
     </main>
   );
 }
+
+export default Cart
